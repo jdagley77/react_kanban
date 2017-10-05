@@ -1,10 +1,12 @@
-import React from 'react';
-import uuid from 'uuid';
-import Notes from './Notes';
+// App renderss and handles behavior for the notes
 
+import React from 'react';
+import uuid from 'uuid'; //uuid is a node.jk implementation that generates unique ids
+import Notes from './Notes';
+// need to make App a class so that it can recognize the state when it changes. need to use react's API instead of using a .push method for new tasks. if you use .push, tasks won't render.
 export default class App extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props); //passing props to super.so this.props gets set. calling super calls the same method as the parent class.
 
 		this.state = {
 			notes: [
@@ -24,9 +26,9 @@ export default class App extends React.Component {
 
 		return (
 			<div>
-				<button className="add-note" onClick={this.addNote}>+</button>
+				<button className="add-note" onClick={this.addNote}>+</button> //addNote ties the logic with the button
 				<Notes 
-					notes={notes}
+					notes={notes}  //passing notes from array with a prop
 					onNoteClick={this.activateNoteEdit}
 					onEdit={this.editNote}
 					onDelete={this.deleteNote}
@@ -34,7 +36,7 @@ export default class App extends React.Component {
 			</div>
 		);
 	}
-
+// calls this function when new note is added. 
 	addNote = () => {
 		this.setState({
 			notes: this.state.notes.concat([{
